@@ -7,15 +7,26 @@ import (
 
 type Tokenizer struct {
 	StrToInt    map[string]int
-	IntToString string
+	IntToString map[int]string
 }
 
 func (t *Tokenizer) Encode(text string) []int {
 	re := regexp.MustCompile(`([,.?_!"()\']|--\\s)`)
 	preprocessed := re.Split(text, -1)
-	var result []int
+	var ids []int
 	for _, item := range preprocessed {
-		result = append(result, t.StrToInt[strings.TrimSpace(item)])
+		ids = append(ids, t.StrToInt[strings.TrimSpace(item)])
 	}
-	return result
+	return ids
+}
+
+func (t *Tokenizer) Decode(ids []int) string {
+	var keys []string
+	for k := range t.IntToString {
+		keys = append(keys, t.IntToString[k])
+	}
+	re := regexp.MustCompile(`\s+([,.?!"()\\]')`)
+	text := strings.Join(keys, " ")
+	text = re.ReplaceAllLiteralString(text, `\\1`)
+	return text
 }

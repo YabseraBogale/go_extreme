@@ -10,6 +10,17 @@ type Tokenizer struct {
 	IntToString map[int]string
 }
 
+func (t *Tokenizer) Init(b []byte) {
+	strToInt := make(map[string]int)
+	intToString := make(map[int]string)
+	for i, j := range strings.Split(string(b), " ") {
+		intToString[i] = j
+		strToInt[j] = i
+	}
+	t.IntToString = intToString
+	t.StrToInt = strToInt
+}
+
 func (t *Tokenizer) Encode(text string) []int {
 	re := regexp.MustCompile(`([,.:;?_!"()\']|--|\s)`)
 	preprocessed := re.Split(text, -1)

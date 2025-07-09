@@ -22,7 +22,7 @@ func main() {
 	}
 	token.IntToString = IntToString
 	token.StrToInt = StrToInt
-	result, _ := token.Encode("I HAD always thought Jack Gisburn rather a cheap")
+	result := token.Encode("I HAD always thought Jack Gisburn rather a cheap")
 	fmt.Println(result)
 
 	fmt.Println(token.Decode(result))

@@ -26,7 +26,13 @@ func (t *Tokenizer) Encode(text string) []int {
 	preprocessed := re.Split(text, -1)
 	var ids []int
 	for _, item := range preprocessed {
-		ids = append(ids, t.StrToInt[strings.TrimSpace(item)])
+		i, ok := t.StrToInt[strings.TrimSpace(item)]
+		if !ok {
+			ids = append(ids, -1)
+		} else {
+			ids = append(ids, i)
+		}
+
 	}
 	return ids
 }
@@ -34,7 +40,12 @@ func (t *Tokenizer) Encode(text string) []int {
 func (t *Tokenizer) Decode(ids []int) string {
 	var keys []string
 	for k := range ids {
-		keys = append(keys, t.IntToString[k])
+		if k == -1 {
+			keys = append(keys, t.IntToString[k])
+		} else {
+			keys = append(keys, "nil")
+		}
+
 	}
 	text := strings.Join(keys, " ")
 	re := regexp.MustCompile(`\s+([,.?!"()\'])`)

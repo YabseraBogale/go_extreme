@@ -15,7 +15,7 @@ func main() {
 	var token tokenizer.Tokenizer
 	token.Init(file)
 
-	result := token.Encode("I HAD always thought Jack Gisburn rather a cheap")
+	result := token.Encode("Hello World")
 	fmt.Println(result)
 
 	fmt.Println(token.Decode(result))

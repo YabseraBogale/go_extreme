@@ -30,7 +30,3 @@ func (t *Tokenizer) Decode(ids []int) string {
 	text = re.ReplaceAllLiteralString(text, `\\1`)
 	return text
 }
-
-func (t *Tokenizer) Init(text string) {
-
-}

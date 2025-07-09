@@ -43,7 +43,7 @@ func (t *Tokenizer) Decode(ids []int) string {
 		if k == -1 {
 			keys = append(keys, t.IntToString[k])
 		} else {
-			keys = append(keys, "nil")
+			keys = append(keys, "<|unk|>")
 		}
 
 	}

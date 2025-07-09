@@ -11,7 +11,7 @@ type Tokenizer struct {
 }
 
 func (t *Tokenizer) Encode(text string) []int {
-	re := regexp.MustCompile(`([,.?_!"()\']|--\\s)`)
+	re := regexp.MustCompile(`([,.:;?_!"()\']|--|\s)`)
 	preprocessed := re.Split(text, -1)
 	var ids []int
 	for _, item := range preprocessed {
@@ -25,8 +25,8 @@ func (t *Tokenizer) Decode(ids []int) string {
 	for k := range t.IntToString {
 		keys = append(keys, t.IntToString[k])
 	}
-	re := regexp.MustCompile(`\s+([,.?!"()\\]')`)
 	text := strings.Join(keys, " ")
-	text = re.ReplaceAllLiteralString(text, `\\1`)
+	re := regexp.MustCompile(`\s+([,.?!"()\'])`)
+	text = re.ReplaceAllString(text, `$1`)
 	return text
 }

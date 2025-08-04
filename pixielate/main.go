@@ -10,7 +10,7 @@ import (
 func main() {
 	inputPath := "input.mp4"
 	outputPath := "output_pixelated.mp4"
-	pixelSize := 16 // The size of the pixel blocks
+	pixelSize := 26 // The size of the pixel blocks
 
 	// Check if input file exists
 	if _, err := os.Stat(inputPath); os.IsNotExist(err) {

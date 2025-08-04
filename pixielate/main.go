@@ -8,9 +8,9 @@ import (
 )
 
 func main() {
-	inputPath := "iam.jpeg" // Can be PNG, JPG, etc.
-	outputPath := "output_pixelated.png"
-	pixelSize := 8 // The size of the pixel blocks
+	inputPath := "input.mp4"
+	outputPath := "output_pixelated.mp4"
+	pixelSize := 16 // The size of the pixel blocks
 
 	// Check if input file exists
 	if _, err := os.Stat(inputPath); os.IsNotExist(err) {
@@ -19,9 +19,8 @@ func main() {
 	}
 
 	// Build the FFmpeg filter chain
-	// The logic is the same as for video: downscale and then upscale
 	err := ffmpeg.Input(inputPath).
-		// Downscale the image. iw and ih are input width and height
+		// Downscale the video to a blocky resolution
 		Filter("scale", ffmpeg.Args{
 			fmt.Sprintf("iw/%d", pixelSize),
 			fmt.Sprintf("ih/%d", pixelSize),
@@ -39,6 +38,6 @@ func main() {
 	if err != nil {
 		fmt.Printf("Error running ffmpeg-go command: %v\n", err)
 	} else {
-		fmt.Printf("Image successfully pixelated and saved to %s\n", outputPath)
+		fmt.Printf("Video successfully pixelated and saved to %s\n", outputPath)
 	}
 }

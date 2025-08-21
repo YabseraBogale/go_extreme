@@ -1,5 +1,5 @@
 create table Item(
-    itemId,
+    itemId INTEGER PRIMARY KEY AUTOINCREMENT,
     itemName varchar(30) not null,
     itemPrice float not null,
     itemUnit float not null,

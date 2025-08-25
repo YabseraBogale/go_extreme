@@ -8,7 +8,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		temp, err := template.ParseFiles("/public/index.html")
+		temp, err := template.ParseFiles("./public/index.html")
 		if err != nil {
 			log.Fatalln(err)
 		}

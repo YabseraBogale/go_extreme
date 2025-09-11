@@ -1,5 +1,5 @@
 create table Employee(
-    id Auto Increment primary key,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     firstname varchar(30) not null,
     middlename varchar(30) not null,
     lastname varchar(30) not null,
@@ -7,11 +7,10 @@ create table Employee(
     email text not null
 )
 
-create table Inventory(
-    item_id Auto Increment primary key,
+create table Item(
+    item_id INT PRIMARY KEY AUTO_INCREMENT,
     item_name text not null,
     item_decrption text not null,
     item_price float not null,
     item_quantity int not null,
-    
 )

@@ -24,7 +24,18 @@ create table Item(
     item_decrption text not null,
     item_price float not null,
     item_quantity int not null,
-    category_id references categories,
-    warehouse_id references warehouses
+    category_id int references categories,
+    warehouse_id int references warehouses
 
 )
+
+CREATE TABLE stock_movements (
+    movement_id   INT PRIMARY KEY AUTO_INCREMENT,
+    item_id    INT references Item,
+    warehouse_id  INT references warehouses,
+    change_qty    INT NOT NULL,  -- positive for add, negative for removal
+    movement_type ENUM('purchase','sale','transfer','adjustment') NOT NULL,
+    reference_id  INT NOT NULL, -- link to PO, SO, or manual adjustment
+    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   
+);

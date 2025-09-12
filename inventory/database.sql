@@ -7,12 +7,12 @@ create table Employee(
     email text not null
 )
 
-CREATE TABLE categories (
+CREATE TABLE Categories (
     category_id  INT PRIMARY KEY AUTO_INCREMENT,
     name         VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE warehouses (
+CREATE TABLE Warehouses (
     warehouse_id   INT PRIMARY KEY AUTO_INCREMENT,
     name           VARCHAR(30) NOT NULL,
     location       VARCHAR(30)
@@ -24,15 +24,15 @@ create table Item(
     item_decrption text not null,
     item_price float not null,
     item_quantity int not null,
-    category_id int references categories,
-    warehouse_id int references warehouses
+    category_id int references Categories,
+    warehouse_id int references Warehouses
 
 )
 
-CREATE TABLE stock_movements (
+CREATE TABLE StockMovements (
     movement_id   INT PRIMARY KEY AUTO_INCREMENT,
     item_id    INT references Item,
-    warehouse_id  INT references warehouses,
+    warehouse_id  INT references Warehouses,
     change_qty    INT NOT NULL,  -- positive for add, negative for removal
     movement_type ENUM('purchase','sale','transfer','adjustment') NOT NULL,
     reference_id  INT NOT NULL, -- link to PO, SO, or manual adjustment

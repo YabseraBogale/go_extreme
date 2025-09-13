@@ -9,7 +9,7 @@ create table Employee(
 
 CREATE TABLE Categories (
     category_id  INT PRIMARY KEY AUTO_INCREMENT,
-    name         VARCHAR(100) NOT NULL
+    name  VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Warehouses (
@@ -25,7 +25,9 @@ create table Item(
     item_price float not null,
     item_quantity int not null,
     category_id int references Categories,
-    warehouse_id int references Warehouses
+    warehouse_id int references Warehouses,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
 )
 

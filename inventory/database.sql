@@ -1,5 +1,5 @@
 create table if not EXISTS Employee(
-    id INT AUTO_INCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     firstname varchar(30) not null,
     middlename varchar(30) not null,
     lastname varchar(30) not null,
@@ -7,32 +7,22 @@ create table if not EXISTS Employee(
     email text not null
 );
 
-CREATE TABLE if not EXISTS Categories (
-    category_id  INT  AUTO_INCREMENT,
-    name  VARCHAR(100) NOT NULL
-);
 
-CREATE TABLE if not EXISTS Warehouses (
-    warehouse_id   INT AUTO_INCREMENT,
-    name           VARCHAR(30) NOT NULL,
-    location       VARCHAR(30)
-);
 
 create table if not EXISTS Item(
-    item_id INT  AUTO_INCREMENT,
+    item_id INTEGER PRIMARY KEY AUTOINCREMENT,
     item_name text not null,
     item_decrption text not null,
     item_price float not null,
     item_quantity int not null,
-    category_id int references Categories,
-    warehouse_id int references Warehouses,
+    category Text not null,
+    location Text not null,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-
+    updated_at TIMESTAMP 
 );
 
 CREATE TABLE if not EXISTS StockMovements (
-    movement_id   INT  AUTO_INCREMENT,
+    movement_id   INTEGER PRIMARY KEY AUTOINCREMENT,
     item_id    INT references Item,
     warehouse_id  INT references Warehouses,
     change_qty    INT NOT NULL,  -- positive for add, negative for removal

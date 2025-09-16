@@ -23,10 +23,10 @@ create table if not EXISTS Item(
 
 CREATE TABLE if not EXISTS StockMovements (
     movement_id   INTEGER PRIMARY KEY AUTOINCREMENT,
-    item_id    INT references Item,
-    warehouse_id  INT references Warehouses,
+    item_id    INTEGER references Item,
+    location text not null  ,
     change_qty    INT NOT NULL,  -- positive for add, negative for removal
-    movement_type ENUM('purchase','sale','transfer','adjustment') NOT NULL,
+    movement_type text NOT NULL,
     reference_id  INT NOT NULL, -- link to PO, SO, or manual adjustment
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    

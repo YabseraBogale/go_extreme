@@ -4,7 +4,8 @@ create table if not EXISTS Employee(
     middlename varchar(30) not null,
     lastname varchar(30) not null,
     phonenumber int not null,
-    email text not null
+    email text not null,
+    
 );
 
 

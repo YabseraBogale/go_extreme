@@ -18,8 +18,8 @@ type Item struct {
 	ItemDescription string
 	ItemPrice       string
 	ItemQuantity    string
-	Categories      Categories
-	Warehouse       Warehouses
+	Categories      string
+	Warehouse       string
 	CreatedAt       time.Time
 	UpdatedAt       time.Time
 }

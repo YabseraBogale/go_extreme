@@ -1,5 +1,5 @@
 create table if not EXISTS Employee(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    employee_id INTEGER PRIMARY KEY AUTOINCREMENT,
     firstname varchar(30) not null,
     middlename varchar(30) not null,
     lastname varchar(30) not null,
@@ -11,6 +11,7 @@ create table if not EXISTS Employee(
 
 create table if not EXISTS Item(
     item_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    employee_id INTEGER references Employee,
     item_name text not null,
     item_decrption text not null,
     item_price float not null,

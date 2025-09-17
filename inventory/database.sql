@@ -1,21 +1,33 @@
--- employee table: stores information about employees
--- added 'not null' constraint to the phonenumber column
-create table if not exists employee (
-    employee_id integer primary key autoincrement,
+create table if not exists emergencycontact (
+
+    emergency_contact_id integer primary key autoincrement,
     firstname varchar(30) not null,
-    middlename varchar(30), -- made optional as not all employees may have one
+    middlename varchar(30), 
     lastname varchar(30) not null,
-    phonenumber varchar(15) not null, -- changed to varchar for international formats and special characters like () or -
-    email text not null unique
+    phonenumber varchar(15) not null, 
+    email text unique,
+    fyida_id text not null
+
 );
 
----
+create table if not exists employee (
 
--- item table: stores information about the current state of items in inventory
--- added created_by_employee_id to link an item to the employee who created its record
--- added updated_by_employee_id to track who last modified the item record
--- removed employee_id as it doesn't belong here, the log table tracks all transactions.
+    employee_id integer primary key autoincrement,
+    emergency_contact_id integer references emergencycontact
+    firstname varchar(30) not null,
+    middlename varchar(30), 
+    lastname varchar(30) not null,
+    phonenumber varchar(15) not null, 
+    email text unique,
+    fyida_id text not null,
+    position text not null,
+    department text not null,
+    salary float not null
+
+);
+
 create table if not exists item (
+    
     item_id integer primary key autoincrement,
     item_name text not null,
     item_description text not null,
@@ -28,20 +40,22 @@ create table if not exists item (
     updated_at timestamp,
     created_by_employee_id integer references employee(employee_id),
     updated_by_employee_id integer references employee(employee_id)
+
 );
 
----
 
 -- transactiontype table: stores the types of transactions (e.g., 'add', 'remove', 'transfer')
 create table if not exists transactiontype (
+
     transaction_type_id integer primary key autoincrement,
     type_name varchar(50) not null unique
+
 );
 
----
 
 -- itemlog table: this is the core of your tracking system. it logs every inventory transaction.
 create table if not exists itemlog (
+
     log_id integer primary key autoincrement,
     item_id integer not null references item(item_id),
     transaction_type_id integer not null references transactiontype(transaction_type_id),
@@ -49,15 +63,18 @@ create table if not exists itemlog (
     quantity_changed integer not null,
     transaction_date timestamp default current_timestamp,
     description text
+
 );
 
 create table if not exists checkout (
+
     checkout_id integer primary key autoincrement,
     item_id integer not null references item(item_id),
     employee_id integer not null references employee(employee_id),
     checkout_date timestamp default current_timestamp,
     return_date timestamp,
     notes text
+
 );
 
 ---

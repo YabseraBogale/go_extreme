@@ -13,7 +13,7 @@ create table if not exists emergencycontact (
 create table if not exists employee (
 
     employee_id integer primary key autoincrement,
-    emergency_contact_id integer references emergencycontact
+    emergency_contact_id integer references emergencycontact,
     firstname varchar(30) not null,
     middlename varchar(30), 
     lastname varchar(30) not null,

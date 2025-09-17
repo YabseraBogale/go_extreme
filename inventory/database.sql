@@ -1,3 +1,11 @@
+drop table emergencycontact;
+drop table employee;
+drop table item;
+drop table checkout;
+drop table transactiontype;
+drop table itemlog;
+drop table checkout;
+
 create table if not exists emergencycontact (
 
     emergency_contact_id integer primary key autoincrement,
@@ -22,6 +30,8 @@ create table if not exists employee (
     fyida_id text not null,
     position text not null,
     department text not null,
+    tin_number int not null,
+    bank_account_number int not null,
     salary float not null
 
 );

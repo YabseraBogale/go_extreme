@@ -1,6 +1,10 @@
 package actors
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type EmployeeContact struct {
 	gorm.Model
@@ -15,6 +19,7 @@ type EmployeeContact struct {
 }
 
 type Employee struct {
+	gorm.Model
 	EmployeeId        int
 	EmergencyContact  EmployeeContact
 	FirstName         string
@@ -32,6 +37,7 @@ type Employee struct {
 }
 
 type Item struct {
+	gorm.Model
 	Employee            Employee
 	ItemId              int
 	ItemName            string
@@ -49,11 +55,13 @@ type Item struct {
 }
 
 type TransactionType struct {
+	gorm.Model
 	TransactionTypeId int
 	TypeName          string
 }
 
 type ItemLog struct {
+	gorm.Model
 	LogId           int
 	Item            Item
 	TransactionType TransactionType
@@ -64,6 +72,7 @@ type ItemLog struct {
 }
 
 type Checkout struct {
+	gorm.Model
 	CheckoutId   int
 	Item         Item
 	Employee     Employee

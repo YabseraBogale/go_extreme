@@ -14,24 +14,24 @@ type EmployeeContact struct {
 }
 
 type Employee struct {
-	EmployeeId         int
-	EmergencyContactId int
-	FirstName          string
-	MiddleName         string
-	LastName           string
-	PhoneNumber        string
-	Email              string
-	FyidaId            string
-	Position           string
-	Department         string
-	TinNumber          int
-	Location           string
-	BankAccountNumber  int
-	Salary             float32
+	EmployeeId        int
+	EmergencyContact  EmployeeContact
+	FirstName         string
+	MiddleName        string
+	LastName          string
+	PhoneNumber       string
+	Email             string
+	FyidaId           string
+	Position          string
+	Department        string
+	TinNumber         int
+	Location          string
+	BankAccountNumber int
+	Salary            float32
 }
 
 type Item struct {
-	EmployeeId          int
+	Employee            Employee
 	ItemId              int
 	ItemName            string
 	ItemDescription     string
@@ -54,9 +54,9 @@ type TransactionType struct {
 
 type ItemLog struct {
 	LogId             int
-	ItemId            int
+	Item              Item
 	TransactionTypeId int
-	EmployeeId        int
+	Employee          Employee
 	QuantityChanged   int
 	TransactionDate   time.Time
 	Description       string
@@ -64,8 +64,8 @@ type ItemLog struct {
 
 type Checkout struct {
 	CheckoutId   int
-	ItemId       int
-	EmployeeId   int
+	Item         Item
+	Employee     Employee
 	CheckoutDate time.Time
 	ReturnDate   time.Time
 	Notes        string

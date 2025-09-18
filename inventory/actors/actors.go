@@ -3,6 +3,7 @@ package actors
 import "time"
 
 type EmployeeContact struct {
+	gorm.Model
 	EmergencyContactId int
 	FirstName          string
 	MiddleName         string
@@ -53,13 +54,13 @@ type TransactionType struct {
 }
 
 type ItemLog struct {
-	LogId             int
-	Item              Item
-	TransactionTypeId int
-	Employee          Employee
-	QuantityChanged   int
-	TransactionDate   time.Time
-	Description       string
+	LogId           int
+	Item            Item
+	TransactionType TransactionType
+	Employee        Employee
+	QuantityChanged int
+	TransactionDate time.Time
+	Description     string
 }
 
 type Checkout struct {

@@ -19,6 +19,7 @@ type EmployeeContact struct {
 }
 
 type Employee struct {
+	gorm.Model
 	EmployeeId         int
 	EmergencyContactId int
 	EmergencyContact   EmployeeContact
@@ -37,8 +38,9 @@ type Employee struct {
 }
 
 type Item struct {
-	Employee            Employee
+	gorm.Model
 	EmployeeId          int
+	Employee            Employee
 	ItemId              int
 	ItemName            string
 	ItemDescription     string
@@ -55,11 +57,13 @@ type Item struct {
 }
 
 type TransactionType struct {
+	gorm.Model
 	TransactionTypeId int
 	TypeName          string
 }
 
 type ItemLog struct {
+	gorm.Model
 	LogId           int
 	ItemId          int
 	Item            Item
@@ -72,6 +76,7 @@ type ItemLog struct {
 }
 
 type Checkout struct {
+	gorm.Model
 	CheckoutId   int
 	ItemId       int
 	Item         Item

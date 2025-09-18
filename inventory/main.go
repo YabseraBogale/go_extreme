@@ -14,13 +14,9 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
-	var employee actors.Employee
-	var item actors.Item
-	var item_log actors.ItemLog
-	var checkout actors.Checkout
-	var transaction_type actors.TransactionType
-	var emergency_contact actors.EmployeeContact
 
-	db.AutoMigrate(&emergency_contact, &employee, &item, &item_log, &checkout, &transaction_type)
+	db.AutoMigrate(&actors.EmployeeContact{}, &actors.Employee{},
+		&actors.Item{}, &actors.TransactionType{},
+		&actors.ItemLog{}, &actors.Checkout{})
 
 }

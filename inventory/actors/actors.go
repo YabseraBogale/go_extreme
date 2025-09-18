@@ -19,26 +19,26 @@ type EmployeeContact struct {
 }
 
 type Employee struct {
-	gorm.Model
-	EmployeeId        int
-	EmergencyContact  EmployeeContact
-	FirstName         string
-	MiddleName        string
-	LastName          string
-	PhoneNumber       string
-	Email             string
-	FyidaId           string
-	Position          string
-	Department        string
-	TinNumber         int
-	Location          string
-	BankAccountNumber int
-	Salary            float32
+	EmployeeId         int
+	EmergencyContactId int
+	EmergencyContact   EmployeeContact
+	FirstName          string
+	MiddleName         string
+	LastName           string
+	PhoneNumber        string
+	Email              string
+	FyidaId            string
+	Position           string
+	Department         string
+	TinNumber          int
+	Location           string
+	BankAccountNumber  int
+	Salary             float32
 }
 
 type Item struct {
-	gorm.Model
 	Employee            Employee
+	EmployeeId          int
 	ItemId              int
 	ItemName            string
 	ItemDescription     string
@@ -55,16 +55,16 @@ type Item struct {
 }
 
 type TransactionType struct {
-	gorm.Model
 	TransactionTypeId int
 	TypeName          string
 }
 
 type ItemLog struct {
-	gorm.Model
 	LogId           int
+	ItemId          int
 	Item            Item
 	TransactionType TransactionType
+	EmployeeId      int
 	Employee        Employee
 	QuantityChanged int
 	TransactionDate time.Time
@@ -72,9 +72,10 @@ type ItemLog struct {
 }
 
 type Checkout struct {
-	gorm.Model
 	CheckoutId   int
+	ItemId       int
 	Item         Item
+	EmployeeId   int
 	Employee     Employee
 	CheckoutDate time.Time
 	ReturnDate   time.Time

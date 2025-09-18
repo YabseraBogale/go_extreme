@@ -15,8 +15,10 @@ func main() {
 		log.Println(err)
 	}
 
-	db.AutoMigrate(&actors.EmployeeContact{}, &actors.Employee{},
+	err = db.AutoMigrate(&actors.EmployeeContact{}, &actors.Employee{},
 		&actors.Item{}, &actors.TransactionType{},
 		&actors.ItemLog{}, &actors.Checkout{})
-
+	if err != nil {
+		log.Println(err)
+	}
 }

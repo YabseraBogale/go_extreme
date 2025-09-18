@@ -14,6 +14,7 @@ create table if not exists emergencycontact (
     lastname varchar(30) not null,
     phonenumber varchar(15) not null, 
     email text unique,
+    location text not null,
     fyida_id text not null
 
 );
@@ -27,6 +28,7 @@ create table if not exists employee (
     lastname varchar(30) not null,
     phonenumber varchar(15) not null, 
     email text unique,
+    location text not null,
     fyida_id text not null,
     position text not null,
     department text not null,

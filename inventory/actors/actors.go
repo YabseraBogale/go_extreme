@@ -8,7 +8,7 @@ import (
 
 type EmployeeContact struct {
 	gorm.Model
-	EmergencyContactId int
+	EmergencyContactId int `gorm:"primaryKey"`
 	FirstName          string
 	MiddleName         string
 	LastName           string
@@ -20,8 +20,8 @@ type EmployeeContact struct {
 
 type Employee struct {
 	gorm.Model
-	EmployeeId         int
-	EmergencyContactId int
+	EmployeeId         int `gorm:"primaryKey"`
+	EmergencyContactId int `gorm:"foreignKey"`
 	FirstName          string
 	MiddleName         string
 	LastName           string
@@ -38,8 +38,8 @@ type Employee struct {
 
 type Item struct {
 	gorm.Model
-	EmployeeId          int
-	ItemId              int
+	EmployeeId          int `gorm:"foreignKey"`
+	ItemId              int `gorm:"primaryKey"`
 	ItemName            string
 	ItemDescription     string
 	ItemPrice           string
@@ -50,8 +50,8 @@ type Item struct {
 	Warehouse           string
 	CreatedAt           time.Time
 	UpdatedAt           time.Time
-	CreatedByEmployeeId int
-	UpdateByEmployeeId  int
+	CreatedByEmployeeId int `gorm:"foreignKey"`
+	UpdateByEmployeeId  int `gorm:"foreignKey"`
 }
 
 type TransactionType struct {
@@ -62,12 +62,10 @@ type TransactionType struct {
 
 type ItemLog struct {
 	gorm.Model
-	LogId  int
-	ItemId int
-
-	TransactionType TransactionType
-	EmployeeId      int
-
+	LogId           int    `gorm:"primaryKey"`
+	ItemId          int    `gorm:"foreignKey"`
+	TransactionName string `gorm:"foreignKey"`
+	EmployeeId      int    `gorm:"foreignKey"`
 	QuantityChanged int
 	TransactionDate time.Time
 	Description     string
@@ -75,11 +73,9 @@ type ItemLog struct {
 
 type Checkout struct {
 	gorm.Model
-	CheckoutId int
-	ItemId     int
-
-	EmployeeId int
-
+	CheckoutId   int `gorm:"primaryKey"`
+	ItemId       int `gorm:"foreignKey"`
+	EmployeeId   int `gorm:"foreignKey"`
 	CheckoutDate time.Time
 	ReturnDate   time.Time
 	Notes        string

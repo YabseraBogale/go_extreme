@@ -2,28 +2,25 @@ package main
 
 import (
 	"log"
-	"net/http"
+
+	"github.com/YabseraBogale/go_extreme/inventory/actors"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
 func main() {
-	http.HandleFunc("/dashboard", func(w http.ResponseWriter, r *http.Request) {
 
-	})
-	http.HandleFunc("/dashboard/item/insert", func(w http.ResponseWriter, r *http.Request) {
-
-	})
-	http.HandleFunc("/dashboard/item/update/<id>", func(w http.ResponseWriter, r *http.Request) {
-
-	})
-	http.HandleFunc("/dashboard/item/delete/<id>", func(w http.ResponseWriter, r *http.Request) {
-
-	})
-	http.HandleFunc("/dashboard/item/select/<id>", func(w http.ResponseWriter, r *http.Request) {
-
-	})
-	err := http.ListenAndServe("localhost:8080", nil)
+	db, err := gorm.Open(sqlite.Open("database.db"), &gorm.Config{})
 	if err != nil {
 		log.Println(err)
 	}
+	var employee actors.Employee
+	var item actors.Item
+	var item_log actors.ItemLog
+	var checkout actors.Checkout
+	var transaction_type actors.TransactionType
+	var emergency_contact actors.EmployeeContact
+
+	db.AutoMigrate(&emergency_contact, &employee, &item, &item_log, &checkout, &transaction_type)
 
 }

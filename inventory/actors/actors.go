@@ -22,7 +22,6 @@ type Employee struct {
 	gorm.Model
 	EmployeeId         int
 	EmergencyContactId int
-	EmergencyContact   EmployeeContact
 	FirstName          string
 	MiddleName         string
 	LastName           string
@@ -40,7 +39,6 @@ type Employee struct {
 type Item struct {
 	gorm.Model
 	EmployeeId          int
-	Employee            Employee
 	ItemId              int
 	ItemName            string
 	ItemDescription     string
@@ -64,12 +62,12 @@ type TransactionType struct {
 
 type ItemLog struct {
 	gorm.Model
-	LogId           int
-	ItemId          int
-	Item            Item
+	LogId  int
+	ItemId int
+
 	TransactionType TransactionType
 	EmployeeId      int
-	Employee        Employee
+
 	QuantityChanged int
 	TransactionDate time.Time
 	Description     string
@@ -77,11 +75,11 @@ type ItemLog struct {
 
 type Checkout struct {
 	gorm.Model
-	CheckoutId   int
-	ItemId       int
-	Item         Item
-	EmployeeId   int
-	Employee     Employee
+	CheckoutId int
+	ItemId     int
+
+	EmployeeId int
+
 	CheckoutDate time.Time
 	ReturnDate   time.Time
 	Notes        string

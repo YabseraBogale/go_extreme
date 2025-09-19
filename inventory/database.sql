@@ -48,6 +48,7 @@ create table if not exists item (
     item_price real not null,
     item_quantity integer not null,
     category text not null,
+    subcategory text not null,
     unit text not null,
     location text not null,
     created_at timestamp default current_timestamp,

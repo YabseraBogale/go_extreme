@@ -1,11 +1,3 @@
-drop table emergencycontact;
-drop table employee;
-drop table item;
-drop table checkout;
-drop table transactiontype;
-drop table itemlog;
-drop table checkout;
-
 create table if not exists emergencycontact (
 
     emergency_contact_id integer primary key autoincrement,
